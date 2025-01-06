@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 // Initialize the socket connection
-const socket = io("http://localhost:8000", {
+const socket = io(import.meta.env.VITE_SOCKET_SERVER_URL, {
   withCredentials: true,
   transports: ["websocket"], // Ensures the use of WebSocket for better performance
   reconnectionAttempts: 5,    // Number of attempts to reconnect if connection fails

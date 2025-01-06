@@ -46,7 +46,7 @@ const InfoBox_Group_Add = ({ users, group }) => {
   }
 
   return (
-    <div className="grid-15-85 w-full h-full p-2 gap-3 overflow-hidden">
+    <div className=" w-full h-full p-2 gap-3 overflow-hidden">
       <div className="infoBox_group_addBox flex py-2">
         <input
           value={groupName}

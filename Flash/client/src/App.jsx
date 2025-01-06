@@ -6,8 +6,8 @@ import { store } from './redux/store';
 
 function App() {
   const httpLink = new HttpLink({
-    uri: 'http://localhost:8000/graphql', // Adjust this if your server URL changes
-    credentials: 'include', // Include if your server needs credentials
+    uri: `${import.meta.env.VITE_SOCKET_SERVER_URL}${import.meta.env.VITE_GRAPHQL_ENDPOINT}`, // Combine base URL and GraphQL endpoint
+    credentials: 'include', // Include cookies for cross-origin requests if necessary
   });
 
   const client = new ApolloClient({

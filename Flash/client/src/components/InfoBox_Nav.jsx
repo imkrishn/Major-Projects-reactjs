@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setColorMode } from '../redux/slices/isDarker';
 
-const InfoBox_Nav = () => {
+const InfoBox_Nav = ({ search }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -23,10 +23,17 @@ const InfoBox_Nav = () => {
         dispatch(setColorMode(!mode));  // Dispatch toggle to Redux
     };
 
+
+    function onChangeSearch(e) {
+        const searchVal = e.target.value.trim();
+        search(searchVal)
+    }
+
     return (
         <div className={`infoBox-nav grid-70-30 ${isDarker ? 'bg-slate-600' : 'bg-slate-300'}`}>
             <div className="infoBox-body_search flex-center flex-row pl-2">
                 <input
+                    onChange={onChangeSearch}
                     type="text"
                     placeholder="Search For Chats"
                     className={`infoBox-body--search--input p-3 size-10 w-full outline-none rounded-tl-lg rounded-bl-lg ${isDarker ? 'isLightMode' : 'bg-slate-800 text-white'}`}

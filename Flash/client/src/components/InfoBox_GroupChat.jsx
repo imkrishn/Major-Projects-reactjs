@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setGroupUser } from "../redux/slices/groupUser";
 import { setChatType } from "../redux/slices/chatType";
 import { useMutation, gql } from "@apollo/client";
-import socket from "../services/Socket.io/socket";
+
 
 const GET_ALL_IN_GROUP = gql`
   mutation InGroup($adminId: String!, $userIds: [ID]!, $groupName: String!) {
@@ -19,13 +19,13 @@ const GET_ALL_IN_GROUP = gql`
   }
 `;
 
-const InfoBox_GroupChat = ({ group, setGroups }) => {
+const InfoBox_GroupChat = ({ group }) => {
   const dispatch = useDispatch();
   const isDarker = useSelector((state) => state.isDarker);
 
   const [inGroup] = useMutation(GET_ALL_IN_GROUP, {
     onCompleted: (data) => {
-      console.log("Group fetched successfully:", data);
+      console.log("Group fetched successfully:");
 
     },
     onError: (err) => {
@@ -33,7 +33,9 @@ const InfoBox_GroupChat = ({ group, setGroups }) => {
     },
   });
 
+
   async function handleGroupOnClick() {
+
     try {
       const { data: groupData } = await inGroup({
         variables: {
@@ -42,6 +44,7 @@ const InfoBox_GroupChat = ({ group, setGroups }) => {
           groupName: group?.name,
         },
       });
+
 
       // Update Redux state with selected group details
       dispatch(setGroupUser(groupData.inGroup));

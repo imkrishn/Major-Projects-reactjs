@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/graphql', // Replace with your GraphQL server endpoint
+  uri: `${import.meta.env.VITE_SOCKET_SERVER_URL}${import.meta.env.VITE_GRAPHQL_ENDPOINT}`, // Replace with your GraphQL server endpoint
   cache: new InMemoryCache(),
 });
 
